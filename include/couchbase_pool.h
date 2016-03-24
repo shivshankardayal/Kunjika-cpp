@@ -25,7 +25,7 @@ using namespace Couchbase;
 #include "config.h"
 // Do not include this header other than in main.cpp
 
-namespace usdigi
+namespace kunjika
 {
 class Couchbase_Pool
 {

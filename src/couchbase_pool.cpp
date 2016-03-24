@@ -3,7 +3,7 @@
 
 using namespace Couchbase;
 
-namespace usdigi
+namespace kunjika
 {
 
 Couchbase_Pool::Couchbase_Pool(size_t nitems)

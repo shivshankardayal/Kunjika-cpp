@@ -9,9 +9,12 @@
 #include <iostream>
 #include <fstream>
 #include <memory>
+#include <string>
 
 #include "kunjika.h"
 #include "config.h"
+#include "curl/curl.h"
+#include "globals.h"
 #include "couchbase_pool.h"
 
 using std::string;
@@ -19,27 +22,28 @@ using std::shared_ptr;
 
 int main(int argc, char** argv)
 {
-    usdigi::parse_config(argv[2], usdigi::config); // this is the typical configuration file required by cppcms
+    kunjika::parse_config(argv[2], kunjika::config); // this is the typical configuration file required by cppcms
     curl_global_init(CURL_GLOBAL_ALL);
 
-    shared_ptr<usdigi::Couchbase_Pool> cb_pool = std::make_shared<usdigi::Couchbase_Pool>(50);
+    shared_ptr<kunjika::Couchbase_Pool> cb_pool = std::make_shared<kunjika::Couchbase_Pool>(50);
     auto ch = cb_pool->pop();
-    auto m = Query::execute(*(ch.get()), "CREATE PRIMARY INDEX ON `" + config.get<string>("bucket_name") + "`");
+    string query = string("CREATE PRIMARY INDEX ON `") + kunjika::config.get<string>("bucket_name") + string("`");
+    auto m = Query::execute(*(ch.get()), query);
     cout << "Index creation: " << endl
          << "  Status: " << m.status() << endl
          << "  Body: " << m.body() << endl;
          
     auto sres = ch->insert("ucount", "0");
-    BOOSTER_INFO(usdigi::app_name) << "Got status for store. Cas=" << std::hex << sres.cas();
+    BOOSTER_INFO(kunjika::app_name) << "Got status for store. Cas=" << std::hex << sres.cas();
     
-    auto sres = ch->insert("qcount", "0");
-    BOOSTER_INFO(usdigi::app_name) << "Got status for store. Cas=" << std::hex << sres.cas();
+    sres = ch->insert("qcount", "0");
+    BOOSTER_INFO(kunjika::app_name) << "Got status for store. Cas=" << std::hex << sres.cas();
     
-    auto sres = ch->insert("acount", "0");
-    BOOSTER_INFO(usdigi::app_name) << "Got status for store. Cas=" << std::hex << sres.cas();
+    sres = ch->insert("acount", "0");
+    BOOSTER_INFO(kunjika::app_name) << "Got status for store. Cas=" << std::hex << sres.cas();
     
-    auto sres = ch->insert("tcount", "0");
-    BOOSTER_INFO(usdigi::app_name) << "Got status for store. Cas=" << std::hex << sres.cas();
+    sres = ch->insert("tcount", "0");
+    BOOSTER_INFO(kunjika::app_name) << "Got status for store. Cas=" << std::hex << sres.cas();
     cb_pool->push(ch);
 
 

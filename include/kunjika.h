@@ -15,7 +15,7 @@ class kunjika : public cppcms::application
     shared_ptr<Couchbase_Pool> cbp;
 
 public:
-    usdigi(cppcms::service& s, shared_ptr<Couchbase_Pool> cbp);
+    kunjika(cppcms::service& s, shared_ptr<Couchbase_Pool> cbp);
     void home();
 };
 }

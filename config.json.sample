@@ -1,0 +1,44 @@
+{
+    "base_path": "/kunjika",
+    "db_connstr": "couchbase://lvh.me/kunjika",
+    "kunjika_passwd": "",
+    "num_db_conn": 60,
+    "db_ips": "127.0.0.1",
+    "service":
+    {
+        "api": "http",
+        "worker_threads": 1,
+        "worker_processes": 0,
+        "ip": "127.0.0.1",
+        "port": 8000
+    },
+    "http": {
+        "script": "/kunjika",
+        "timeout": 120
+    },
+    "logging":
+    {
+        "level": "info"
+    },
+    "recaptcha_public_key": "google recaptcha public part",
+    "recaptcha_private_key": "google recaptcha private part",
+    "google_analytics_key": "",
+    "g_recaptcha_url": "https://www.google.com/recaptcha/api/siteverify",
+    "domain": "10hash.com",
+    "from": "<email enclosed in angular brackets>",
+    "to": "<email enclosed in angular brackets>",
+    "sender_email": "sender email",
+    "sender_password": "sender password",
+    "smtp_address": "smtp[s]://domain:port",
+    "verification_url": "http://lvh.me/ss/register/verify_email?verification_token=",
+    "verification_data_ttl": "86400",
+        "session" : {
+        "expire" : "renew",  
+        "timeout" : 604800,
+        "location" : "client",
+        "client" :      {
+            "hmac" :        "sha1",
+            "hmac_key" :    "secret key"
+        }      
+    }  
+}

@@ -32,3 +32,5 @@ static size_t WriteMemoryCallback(void* contents, size_t size, size_t nmemb, voi
     return realsize;
 }
 }
+
+#endif // end of globals.h

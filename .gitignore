@@ -1,4 +1,5 @@
 build/
 Debug/
 Release/
-
+kunjika-cpp.project
+config.json
