@@ -1,6 +1,6 @@
 <% c++ #include "home.h" %>
-<% skin usdigi %>
-<% view home uses content::home %>
+<% skin kunjika %>
+<% view index uses content::home %>
 <% template render() %>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +13,7 @@
             <meta property="og:description" content=''>
             <meta name="author" content="">
             <meta name="keywords" content="">
-            <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+            <link href="<%= base_path %>/css/bootstrap.min.css" rel="stylesheet">
             <meta http-equiv="Pragma" content="no-cache">
             <meta http-equiv="Expires" content="-1">
             <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
@@ -106,15 +106,15 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="/tags">Tags</a>
+                                <a href="<%= base_path %>/tags">Tags</a>
                             </li>
                             <li>
-                                <a href="/users">Users</a>
+                                <a href="<%= base_path %>/users">Users</a>
                             </li>
                             <li>
-                                <a href="/poll" class="poll">Poll</a>
+                                <a href="<%= base_path %>/poll" class="poll">Poll</a>
                             </li>
-                            <li><a href="/login" class="login"><i class="fa fa-sign-in"></i> Login</a></li>
+                            <li><a href="<%= base_path %>/login" class="login"><i class="fa fa-sign-in"></i> Login</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i>Search</a>
                                 <ul class="dropdown-menu">
@@ -134,18 +134,18 @@
                                         <gcse:searchbox-only></gcse:searchbox-only>
                                     </div>
                                     <div class="col-md-12">
-                                        <form class="form-search" action="/search" method="get">
+                                        <form class="form-search" action="<%= base_path %>/search" method="get">
                                             <div style="margin-left: 10px; margin-top: 10px" class="input-append">
                                                 <input type="text" class="form-control form-inline" id="query" name="query">
                                                     <button type="submit class="btn" style="margin-top:10px">Kunjika Search</button>
                                             </div>
                                         </form>
-                                        <a href="/search-help" style="margin-top: -10px; margin-left: 340px" class="btn btn-link">Search Help</a>
+                                        <a href="<%= base_path %>/search-help" style="margin-top: -10px; margin-left: 340px" class="btn btn-link">Search Help</a>
                                     </div>
                                 </ul>
                             </li>
                             <li>
-                                <a href="/recent-questions.atom" class="feed" title="Feed"><i class="fa fa-rss"></i></a>
+                                <a href="<%= base_path %>/recent-questions.atom" class="feed" title="Feed"><i class="fa fa-rss"></i></a>
                             </li>
                         </ul>
                     </div><!--/.nav-collapse -->
@@ -178,22 +178,22 @@
                     <div class="site-stats">
                         <div class="module">
                             <span class="fa fa-question"></span>
-                            <span class="summary-count"><%= qcount %></span>
+                            <span class="summary-count"><%= sc.qcount %></span>
                             <span class="summary-text">questions</span>
                         </div>
                         <div class="module">
                             <span class="fa fa-comment"></span>
-                            <span class="summary-count"><%= acount %></span>
+                            <span class="summary-count"><%= sc.acount %></span>
                             <span class="summary-text">answers</span>
                         </div>
                         <div class="module">
                             <span class="fa fa-users"></span>
-                            <span class="summary-count"><%= ucount %></span>
+                            <span class="summary-count"><%= sc.ucount %></span>
                             <span class="summary-text">users</span>
                         </div>
                         <div class="module">
                             <span class="fa fa-tags"></span>
-                            <span class="summary-count"><%= tcount %></span>
+                            <span class="summary-count"><%= sc.tcount %></span>
                             <span class="summary-text">tags</span>
                         </div>
                     </div>
@@ -208,7 +208,7 @@
                 </div>
             </div>
         </div>
-        <script src="<%= base_path%>/static/js/bootstrap.min.js"></script>
+        <script src="<%= base_path%>/js/bootstrap.min.js"></script>
     </div>
     <div class="row-fluid">
         <div class="container">

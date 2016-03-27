@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "home.h"
+#include "globals.h"
 #include "couchbase_pool.h"
 
 using std::shared_ptr;

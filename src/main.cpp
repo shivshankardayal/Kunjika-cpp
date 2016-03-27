@@ -20,6 +20,25 @@
 using std::string;
 using std::shared_ptr;
 
+namespace kunjika
+{
+void get_counters(shared_ptr<Couchbase_Pool> cbp, struct counters& sc)
+{
+    auto ch = cbp->pop();
+
+    auto gres = ch->get("ucount");
+    sc.ucount = stoull(gres.value().to_string());
+    gres = ch->get("acount");
+    sc.acount = stoull(gres.value().to_string());
+    gres = ch->get("qcount");
+    sc.qcount = stoull(gres.value().to_string());
+    gres = ch->get("tcount");
+    sc.tcount = stoull(gres.value().to_string());
+
+    cbp->push(ch);
+}
+}
+
 int main(int argc, char** argv)
 {
     kunjika::parse_config(argv[2], kunjika::config); // this is the typical configuration file required by cppcms
@@ -29,23 +48,21 @@ int main(int argc, char** argv)
     auto ch = cb_pool->pop();
     string query = string("CREATE PRIMARY INDEX ON `") + kunjika::config.get<string>("bucket_name") + string("`");
     auto m = Query::execute(*(ch.get()), query);
-    cout << "Index creation: " << endl
-         << "  Status: " << m.status() << endl
-         << "  Body: " << m.body() << endl;
-         
+    cout << "Index creation: " << endl << "  Status: " << m.status() << endl << "  Body: " << m.body() << endl;
+
+    // initialize counters if they do not exist
     auto sres = ch->insert("ucount", "0");
     BOOSTER_INFO(kunjika::app_name) << "Got status for store. Cas=" << std::hex << sres.cas();
-    
+
     sres = ch->insert("qcount", "0");
     BOOSTER_INFO(kunjika::app_name) << "Got status for store. Cas=" << std::hex << sres.cas();
-    
+
     sres = ch->insert("acount", "0");
     BOOSTER_INFO(kunjika::app_name) << "Got status for store. Cas=" << std::hex << sres.cas();
-    
+
     sres = ch->insert("tcount", "0");
     BOOSTER_INFO(kunjika::app_name) << "Got status for store. Cas=" << std::hex << sres.cas();
     cb_pool->push(ch);
-
 
     try {
         cppcms::service srv(argc, argv);

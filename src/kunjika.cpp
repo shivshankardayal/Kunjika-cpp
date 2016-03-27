@@ -1,10 +1,3 @@
-#include <cppcms/application.h>
-#include <cppcms/applications_pool.h>
-#include <cppcms/service.h>
-#include <cppcms/http_response.h>
-#include <cppcms/url_dispatcher.h>
-#include <iostream>
-
 #include "kunjika.h"
 
 namespace kunjika
@@ -28,6 +21,7 @@ void kunjika::home()
     if(request().request_method() == "GET") {
         content::home c;
 
+        get_counters(cbp, c.sc);
         c.base_path = settings().get<std::string>("base_path");
         c.google_recpatcha_public_key = settings().get<std::string>("recaptcha_public_key");
         render("index", c);

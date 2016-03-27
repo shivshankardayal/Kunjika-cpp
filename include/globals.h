@@ -1,7 +1,21 @@
 #ifndef GLOBALS_H_
 #define GLOBALS_H_
 
+#include <cppcms/application.h>
+#include <cppcms/applications_pool.h>
+#include <cppcms/service.h>
+#include <cppcms/http_response.h>
+#include <cppcms/url_dispatcher.h>
+#include <booster/log.h>
+
+#include <memory>
+#include <iostream>
+
 #include <cstdlib>
+
+#include "couchbase_pool.h"
+
+using std::shared_ptr;
 
 namespace kunjika
 {
@@ -31,6 +45,15 @@ static size_t WriteMemoryCallback(void* contents, size_t size, size_t nmemb, voi
     // cout << mem->memory<< endl;
     return realsize;
 }
+
+struct counters {
+    size_t qcount;
+    size_t acount;
+    size_t tcount;
+    size_t ucount;
+};
+
+void get_counters(shared_ptr<Couchbase_Pool> cbp, struct counters& sc);
 }
 
 #endif // end of globals.h
