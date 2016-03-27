@@ -1,6 +1,7 @@
-ggqa
-====
-ggqa is a better version of [Memoir](https://github.com/shivshankardayal/memoir).
+Kunjika-CPP
+===========
+Kunjika-CPP is a better version of [Memoir](https://github.com/shivshankardayal/memoir)
+and [Kunjika](https://github.com/shivshankardayal/kunjika).
 This uses C++ and new database changes warranted by new release of Couchbase.
 Fundamentally, it is QA system like many others, for example, Stackoverflow,
 Question2Answer, Answerhub etc. You can see a well-compiled list of QA apps
@@ -11,7 +12,7 @@ high performance web application.
 
 It is envisioned to provide a REST API with this version of QA which was not
 their earlier. Once the development is reasonably complete a sandbox version
-will be available for testing at https://10hash.com/ggqa
+will be available for testing at https://10hash.com/kunjika
 
 Other than language change from Python to C++ and framework change from
 Flask to Seastar the template library had to change as well. I use
