@@ -14,13 +14,9 @@ It is envisioned to provide a REST API with this version of QA which was not
 their earlier. Once the development is reasonably complete a sandbox version
 will be available for testing at https://10hash.com/kunjika
 
-Other than language change from Python to C++ and framework change from
-Flask to Seastar the template library had to change as well. I use
-Ctemplate(formerly known as Google template) because it is synergetic. DB has
-changed from Couchbase to Cassandra and will later change to Scylla as Scylla
-matures. I used to stores BLOBs in Couchbase itself but now I will use
-Hadoop as a ditributed filesystem(DFS) to store BLOBs which will put less
-pressure on DB and is in general better.
+Other than language change from Python to C++, framework has change from
+Flask to CppCMS. BLOBs are stored in Couchbase itself because a QA does not
+have lots of those and size is small.
 
 ### Memoir's Readme
 
