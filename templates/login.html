@@ -1,0 +1,425 @@
+<% c++ #include "login.h" %>
+<% skin kunjika %>
+<% view login_view uses login_content::login_data %>
+<% template render() %>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Sign In - Kunjika</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta property="og:type" content="article">
+		<meta itemprop="title" property="og:title" content=''>
+		<meta property="og:description" content=''>
+		<meta name="author" content="">
+		<meta name="keywords" content="">
+		<link href="<%= base_path %>/css/bootstrap.min.css" rel="stylesheet">
+		<!--link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"-->
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+		<!--[if IE 7]>
+		<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.css">
+		<![endif]-->
+		<script src="//code.jquery.com/jquery-1.12.2.min.js"></script>
+		<!--script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+		<!--script>window.jQuery || document.write('<script src="/static/js/jquery-ui.min.js"><\/script>')</script-->
+		<script type="text/javascript" src="<%= base_path %>/js/jquery.ajaxfileupload.js"></script>
+		<!--script>window.jQuery || document.write('<script src="/static/js/jquery-migrate-1.2.1.js"><\/script>')</script-->
+		<script type="text/javascript"
+			src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script>window.jQuery || document.write('<script src="<%= base_path %>/js/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')</script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+			tex2jax: {inlineMath: [['\\(','\\)'], ['\\[','\\]']]},
+			processEscapes: true
+			});
+			
+		</script>
+		<script type="text/javascript" src="<%= base_path %>/js/bootstrap-flash.js"></script>
+		<script type="text/javascript">if ( $.attrFn ) { $.attrFn.text = true; }</script>
+		<script src="https://apis.google.com/js/plusone.js"></script>
+		<link href="<%= base_path %>/css/kunjika.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+		<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body class="" id=""
+		>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=361052544049458&version=v2.0";
+			fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+		<div id="row-fluid">
+			<div class="navbar navbar-fixed-top" role="navigation">
+				<div class="container">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="/">10hash</a>
+						</div>
+						<div class="navbar-collapse collapse">
+							<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+									Questions
+									<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="<%= base_path %>/questions">Browse</a></li>
+										<li><a href="<%= base_path %>/ask">Ask</a></li>
+										<li><a href="<%= base_path %>/unanswered">Unanswered</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+									Articles
+									<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="<%= base_path %>/articles">Browse</a></li>
+										<li><a href="<%= base_path %>/write">Write</a></li>
+										<li><a href="<%= base_path %>/article_tags">Article Tags</a></li>
+										<li><a href="<%= base_path %>/drafts">My Drafts</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="<%= base_path %>/tags">Tags</a>
+								</li>
+								<li>
+									<a href="<%= base_path %>/users">Users</a>
+								</li>
+								<li>
+									<a href="<%= base_path %>/poll" class="poll">Poll</a>
+								</li>
+								<!--/ul>
+									<ul class="nav navbar-nav navbar-right"-->
+								<li><a href="<%= base_path %>/login" class="login"><i class="fa fa-sign-in"></i> Login</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+										class="fa fa-search"></i>
+									Search
+									</a>
+									<ul class="dropdown-menu">
+										<div class="col-md-12">
+											<script>
+												(function() {
+												  var cx = '000002629091691089689:clsskp1pmkm';
+												  var gcse = document.createElement('script');
+												  gcse.type = 'text/javascript';
+												  gcse.async = true;
+												  gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+												      '//www.google.com/cse/cse.js?cx=' + cx;
+												  var s = document.getElementsByTagName('script')[0];
+												  s.parentNode.insertBefore(gcse, s);
+												})();
+											</script>
+											<gcse:searchbox-only></gcse:searchbox-only>
+										</div>
+										<div class="col-md-12">
+											<form class="form-search" action="<%= base_path %>/search" method="get">
+												<div style="margin-left: 10px; margin-top: 10px" class="input-append">
+													<input type="text" class="form-control form-inline" id="query" name="query">
+													<button type="submit class="btn" style="margin-top:10px">Kunjika Search</button>
+												</div>
+											</form>
+											<a href="<%= base_path %>/search-help" style="margin-top: -10px; margin-left: 340px"
+												class="btn btn-link">Search Help</a>
+										</div>
+									</ul>
+								</li>
+								<li>
+									<a href="<%= base_path %>/recent-questions.atom" class="feed" title="Feed">
+									<i class="fa fa-rss"></i> 
+									</a>
+								</li>
+							</ul>
+						</div>
+						<!--/.nav-collapse -->
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-push-2">
+					</div>
+				</div>
+			</div>
+			<!-- containor for flash messages -->
+			<div class="share-buttons">
+				<div class="g-plus" data-action="share" data-annotation="vertical-bubble" action="share"></div>
+				<div class="fb-share-button" data-layout="box_count" data-width="40px"></div>
+			</div>
+			<div class="container">
+				<div class="container">
+					<div class="" id="loginModal">
+						<div class="page-header">
+							<h3>Have an Account?</h3>
+						</div>
+						<div>
+							<ul class="nav nav-tabs">
+								<li class="active">
+									<a href="#login" data-toggle="tab">Login</a>
+								</li>
+								<li>
+									<a href="#create" data-toggle="tab">Create Account</a>
+								</li>
+							</ul>
+							<div id="myTabContent" class="tab-content">
+								<div class="tab-pane active in login-form" id="login" >
+									<div class="row">
+										<div class="main">
+											<h3>Please Log In, or <a href="/register">Sign Up</a></h3>
+											<div class="row">
+												<div class="col-xs-6 col-sm-6 col-md-6">
+													<a ref='/fb_login' class="btn btn-block btn-social btn-facebook">
+													<i class="fa fa-facebook"></i> Facebook
+													</a>
+												</div>
+												<div class="col-xs-6 col-sm-6 col-md-6">
+													<a href='/google_login' class="btn btn-block btn-social btn-google-plus">
+													<i class="fa fa-google-plus"></i> Google
+													</a>
+												</div>
+											</div>
+											<div class="login-or">
+												<hr class="hr-or colorgraph">
+												<span class="span-or">or</span>
+											</div>
+											<form role="form" action="<%= base_path %>/login" method="post">
+												<div class="form-group">
+													<div class="control-group">
+														<label class="control-label" for="email">Email</label>
+														<div class="controls">
+															<input class="form-control" id="email" name="email" type="text" value="">
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<a class="pull-right" href="<%= base_path %>/reset_password">Forgot password?</a>
+													<div class="control-group">
+														<label class="control-label" for="password">Password</label>
+														<div class="controls">
+															<input class="form-control" id="password" name="password" type="password" value="">
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<button type="submit" class="btn btn btn-primary">
+													<i class="fa fa-sign-in"></i> Log In
+													</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="create">
+									<div class="row">
+										<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+											<form role="form" id="tab" method="post" action="<%= base_path %>/register">
+												<h2>Please Sign Up <small>It's free and always will be.</small></h2>
+												<hr class="colorgraph">
+												<div class="row">
+													<div class="col-xs-12 col-sm-6 col-md-6">
+														<div class="form-group">
+															<div class="control-group">
+																<label class="control-label" for="fname">First Name</label>
+																<div class="controls">
+																	<input class="form-control" id="fname" name="fname" type="text" value="">
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-xs-12 col-sm-6 col-md-6">
+														<div class="form-group">
+															<div class="control-group">
+																<label class="control-label" for="lname">Last Name</label>
+																<div class="controls">
+																	<input class="form-control" id="lname" name="lname" type="text" value="">
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<a class="pull-right" name="check_acailability" id="check_availability" href="#">Check Availability</a>
+													<div id="availability_result"></div>
+													<div class="control-group">
+														<label class="control-label" for="email1">Email</label>
+														<div class="controls">
+															<input class="form-control" id="email1" name="email1" type="text" value="">
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-xs-12 col-sm-6 col-md-6">
+														<div class="form-group">
+															<div class="control-group">
+																<label class="control-label" for="password">Password</label>
+																<div class="controls">
+																	<input class="form-control" id="password" name="password" type="password" value="">
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-xs-12 col-sm-6 col-md-6">
+														<div class="form-group">
+															<div class="control-group">
+																<label class="control-label" for="confirm">Confirm Password</label>
+																<div class="controls">
+																	<input class="form-control" id="confirm" name="confirm" type="password" value="">
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+													<div class="g-recaptcha" data-sitekey="6Ld3dxkTAAAAAJWRZ3tj7BVbxDf4TpiPw-YLBoGe"></div>
+												</div>
+												<div class="row">
+													<div class="col-xs-12">
+														By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="<%= base_path %>/legal/privacy-policy">privacy policy</a>
+														and <a href="<%= base_path %>/legal/terms-of-service">terms of service</a>.
+													</div>
+												</div>
+												<hr class="colorgraph">
+												<div class="row">
+													<div class="col-xs-12 col-md-6">
+														<button type="submit" value="" class="btn btn-primary btn-block">Register</button>
+													</div>
+													<div class="col-xs-12 col-md-6"><a href="<%= base_path %>/login" class="btn btn-success btn-block">Sign In</a></div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
+				<script>
+					$(document).ready(function () {
+					    $('#tab').validate({
+					        debug: true,
+					        rules: {
+					            username: {
+					                minlength: 4,
+					                maxlength: 16,
+					                required: true
+					            },
+					            email1: {
+					                required: true,
+					                email: true,
+					                minlength: 5,
+					                maxlength: 128
+					            },
+					            url: {
+					                required: false,
+					                url: true,
+					                minlength: 5,
+					                maxlength: 64
+					            },
+					            password: {
+					                required: true,
+					                minlength: 8,
+					                maxlength: 32,
+					                equalTo: '#confirm'
+					            },
+					            confirm: {
+					                required: true,
+					                minlength: 8,
+					                maxlength: 32
+					            },
+					            fname: {
+					                minlength: 2,
+					                maxlength: 32,
+					                required: true
+					            },
+					            lname: {
+					                minlength: 2,
+					                maxlength: 32,
+					                required: true
+					            }
+					        },
+					        highlight: function (element) {
+					            $(element).closest('.control-group').removeClass('success').addClass('error');
+					        },
+					        success: function (element) {
+					            element.addClass('valid').closest('.control-group').removeClass('error').addClass('success');
+					        },
+					        submitHandler: function (form) {
+					            form.submit();
+					        }
+					    });
+					
+					    $('#check_availability').click(function (event) {
+					        var checking_html = 'Checking...';
+					        $('#availability_result').html(checking_html);
+					        check_availability();
+					        event.preventDefault();
+					    });
+					});
+					function check_availability() {
+					
+					    //get the username
+					    var email = $('#email1').val();
+					
+					    //use ajax to run the check
+					    $.post("/check_email", {
+					        email: email
+					    }, function (result) {
+					        //if the result is 1
+					        if (result == "1") {
+					            //show that the username is available
+					            $('#availability_result').html('<p style="color:#040"><br/>' + email + ' is available as username.</p>');
+					        } else {
+					            //show that the username is NOT available
+					            $('#availability_result').html('<p style="color:#770"><br/>' + email + ' is already registered.</p>');
+					        }
+					    });
+					}
+				</script>
+				<script>
+                    (function (i, s, o, g, r, a, m) {
+                        i['GoogleAnalyticsObject'] = r;
+                        i[r] = i[r] || function () {
+                            (i[r].q = i[r].q || []).push(arguments)
+                        }, i[r].l = 1 * new Date();
+                        a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                        a.async = 1;
+                        a.src = g;
+                        m.parentNode.insertBefore(a, m)
+                    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+			
+                    ga('create', 'UA-17487464-6', '10hash.com');
+                    ga('send', 'pageview');
+                </script>
+			</div>
+			<script src="<%= base_path %>/js/bootstrap.min.js"></script>
+		</div>
+		<div class="row-fluid">
+			<div class="container">
+				<hr/>
+				<p>&copy; 2016 <a href="https://10hash.com">10hash.com</a>.
+					Licensed under GNU GPLv3. Contents are under GNU GPLv3 and GNU FDL latest versions
+					as applicable on code and documentation portions.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>
+<% end template %>
+<% end view %>
+<% end skin %>

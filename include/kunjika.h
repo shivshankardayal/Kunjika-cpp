@@ -4,6 +4,8 @@
 #include <memory>
 
 #include "home.h"
+#include "login.h"
+#include "registration.h"
 #include "globals.h"
 #include "couchbase_pool.h"
 

@@ -1,5 +1,5 @@
-#ifndef GLOBALS_H_
-#define GLOBALS_H_
+#ifndef GLOBALS_H
+#define GLOBALS_H
 
 #include <cppcms/application.h>
 #include <cppcms/applications_pool.h>
@@ -15,6 +15,7 @@
 
 #include "couchbase_pool.h"
 
+using std::string;
 using std::shared_ptr;
 
 namespace kunjika
@@ -27,24 +28,12 @@ struct MemoryStruct
 
 static const char* app_name = "kunjika";
 
-static size_t WriteMemoryCallback(void* contents, size_t size, size_t nmemb, void* userp)
-{
-    size_t realsize = size * nmemb;
-    struct MemoryStruct* mem = (struct MemoryStruct*)userp;
+size_t WriteMemoryCallback(void* contents, size_t size, size_t nmemb, void* userp);
+int validate_google_recaptcha(const string& g_recaptcha_response,
+                                     const string& recaptcha_secret_key,
+                                     const string& remote_addr,
+                                     const string& recaptcha_url);
 
-    mem->memory = (char*)realloc(mem->memory, mem->size + realsize + 1);
-    if(mem->memory == NULL) {
-        // out of memory!
-        BOOSTER_ERROR(app_name) << "not enough memory (realloc returned NULL)";
-        return 0;
-    }
-
-    memcpy(&(mem->memory[mem->size]), contents, realsize);
-    mem->size += realsize;
-    mem->memory[mem->size] = 0;
-    // cout << mem->memory<< endl;
-    return realsize;
-}
 
 struct counters {
     size_t qcount;

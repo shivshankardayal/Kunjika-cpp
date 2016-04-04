@@ -154,12 +154,14 @@
         </div>
         <div class="container">
             <div class="row">
+                <% if not greeting %>
                 <div class="col-md-8 col-md-push-2">
                     <div class="alert alert-info text-center" role="alert">
                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             First time here. Consider joining and helping community.
                     </div>
                 </div>
+                <% end %>
             </div>
         </div><!-- containor for flash messages -->
         <div class="share-buttons">

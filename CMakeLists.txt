@@ -65,6 +65,7 @@ set(SKINS contendend orangesky)
 
 set(TEMPLATES
     templates/index.html
+    templates/login.html
 	)
 
 
@@ -72,6 +73,10 @@ set(USDIGI_SRC
 	src/kunjika.cpp
     src/main.cpp
     src/config.cpp
+    src/login.cpp
+    src/base64.cpp
+    src/registration.cpp
+    src/globals.cpp
     "${CMAKE_CURRENT_BINARY_DIR}/templates.cpp"
 	)
 

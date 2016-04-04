@@ -15,6 +15,7 @@ struct home : public cppcms::base_content
     string google_recpatcha_public_key;
     string registration_error;
     string analytics_key;
+    bool greeting;
     string domain;
     struct kunjika::counters sc;
 };
